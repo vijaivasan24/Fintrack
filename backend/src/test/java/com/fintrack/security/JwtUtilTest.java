@@ -16,7 +16,7 @@ class JwtUtilTest {
     @BeforeEach
     void setUp() {
         jwtUtil = new JwtUtil();
-        ReflectionTestUtils.setField(jwtUtil, "secret", "2JwjkEYOrOz5EYOXXXk2Oacex3YpKHNYLoN4Ahn88vqgumK9F5KlGDFA2lv70khE");
+        ReflectionTestUtils.setField(jwtUtil, "secret", "unitTestSecretKeyForTestingJwtTokenGenerationAndValidation1234567890");
         ReflectionTestUtils.setField(jwtUtil, "expirationMs", 3600000L);
     }
 
