@@ -59,3 +59,62 @@ Expected response:
 ```text
 OK
 ```
+
+## API Endpoints
+
+### Authentication
+
+#### Register a New User
+- **Endpoint**: `POST /api/auth/register`
+- **Access**: Public
+- **Request Body**:
+  ```json
+  {
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "password": "password123"
+  }
+  ```
+- **Response**: `201 Created`
+  ```json
+  {
+    "id": 1,
+    "name": "Jane Doe",
+    "email": "jane@example.com"
+  }
+  ```
+
+#### User Login
+- **Endpoint**: `POST /api/auth/login`
+- **Access**: Public
+- **Request Body**:
+  ```json
+  {
+    "email": "jane@example.com",
+    "password": "password123"
+  }
+  ```
+- **Response**: `200 OK`
+  ```json
+  {
+    "token": "eyJhbGciOiJIUzI1NiIsIn...",
+    "name": "Jane Doe"
+  }
+  ```
+
+### Users
+
+#### Get Current User Profile
+- **Endpoint**: `GET /api/users/me`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response**: `200 OK`
+  ```json
+  {
+    "id": 1,
+    "name": "Jane Doe",
+    "email": "jane@example.com"
+  }
+  ```
+
