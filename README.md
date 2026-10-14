@@ -60,6 +60,23 @@ Expected response:
 OK
 ```
 
+## Running Tests
+1. Create the test database in MySQL:
+   ```sql
+   CREATE DATABASE fintrack_test;
+   ```
+2. From the `backend` directory, run:
+
+   Linux / macOS:
+   ```bash
+   ./mvnw test
+   ```
+
+   Windows:
+   ```cmd
+   mvnw.cmd test
+   ```
+
 ## API Endpoints
 
 ### Authentication
