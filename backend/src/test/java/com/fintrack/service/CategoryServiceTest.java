@@ -9,6 +9,7 @@ import com.fintrack.exception.CategoryInUseException;
 import com.fintrack.exception.CategoryNotFoundException;
 import com.fintrack.exception.DuplicateCategoryException;
 import com.fintrack.repository.CategoryRepository;
+import com.fintrack.repository.TransactionRepository;
 import com.fintrack.repository.UserRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -38,6 +39,9 @@ class CategoryServiceTest {
 
     @Mock
     private UserRepository userRepository;
+
+    @Mock
+    private TransactionRepository transactionRepository;
 
     @InjectMocks
     private CategoryService categoryService;
@@ -152,6 +156,7 @@ class CategoryServiceTest {
     void shouldDeleteCategorySuccessfully() {
         when(userRepository.findByEmail("jane@example.com")).thenReturn(Optional.of(sampleUser));
         when(categoryRepository.findByIdAndUserId(10L, 1L)).thenReturn(Optional.of(sampleCategory));
+        when(transactionRepository.existsByCategoryId(10L)).thenReturn(false);
 
         categoryService.deleteCategory(10L, "jane@example.com");
 
@@ -160,14 +165,12 @@ class CategoryServiceTest {
 
     @Test
     void shouldThrowConflictWhenDeletingCategoryWithTransactions() {
-        CategoryService spyService = Mockito.spy(categoryService);
-
         when(userRepository.findByEmail("jane@example.com")).thenReturn(Optional.of(sampleUser));
         when(categoryRepository.findByIdAndUserId(10L, 1L)).thenReturn(Optional.of(sampleCategory));
-        doReturn(true).when(spyService).hasTransactions(10L);
+        when(transactionRepository.existsByCategoryId(10L)).thenReturn(true);
 
         assertThrows(CategoryInUseException.class, () ->
-                spyService.deleteCategory(10L, "jane@example.com"));
+                categoryService.deleteCategory(10L, "jane@example.com"));
 
         verify(categoryRepository, never()).delete(any(Category.class));
     }

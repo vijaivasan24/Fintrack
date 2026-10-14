@@ -8,6 +8,7 @@ import com.fintrack.exception.CategoryInUseException;
 import com.fintrack.exception.CategoryNotFoundException;
 import com.fintrack.exception.DuplicateCategoryException;
 import com.fintrack.repository.CategoryRepository;
+import com.fintrack.repository.TransactionRepository;
 import com.fintrack.repository.UserRepository;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,14 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
+    private final TransactionRepository transactionRepository;
 
-    public CategoryService(CategoryRepository categoryRepository, UserRepository userRepository) {
+    public CategoryService(CategoryRepository categoryRepository,
+                           UserRepository userRepository,
+                           TransactionRepository transactionRepository) {
         this.categoryRepository = categoryRepository;
         this.userRepository = userRepository;
+        this.transactionRepository = transactionRepository;
     }
 
     public CategoryResponse createCategory(CategoryRequest request, String userEmail) {
@@ -79,7 +84,6 @@ public class CategoryService {
         Category category = categoryRepository.findByIdAndUserId(id, user.getId())
                 .orElseThrow(() -> new CategoryNotFoundException("Category not found with id " + id));
 
-        // Hook for checking associated transactions once transaction feature is added
         if (hasTransactions(id)) {
             throw new CategoryInUseException("Cannot delete category because it has associated transactions");
         }
@@ -88,7 +92,7 @@ public class CategoryService {
     }
 
     protected boolean hasTransactions(Long categoryId) {
-        return false;
+        return transactionRepository.existsByCategoryId(categoryId);
     }
 
     private User getUserByEmail(String email) {
