@@ -2,6 +2,10 @@
 
 Frontend client for the FinTrack personal finance tracking application. Built with React, Vite, Tailwind CSS, and react-router-dom.
 
+## Features and Pages
+
+- Categories: Manage income and expense categories with add, inline edit, and delete options.
+
 ## Prerequisites
 
 - Node.js (version 18 or higher)
