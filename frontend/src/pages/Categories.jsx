@@ -15,27 +15,39 @@ export default function Categories() {
   const [deleteError, setDeleteError] = useState(null);
 
   useEffect(() => {
-    fetchCategories();
-  }, []);
+    let ignore = false;
 
-  async function fetchCategories() {
-    setLoading(true);
-    setPageError(null);
-    try {
-      const response = await apiFetch('/api/categories');
-      if (response.ok) {
-        const data = await response.json();
-        setCategories(data);
-      } else {
-        const errorData = await response.json().catch(() => null);
-        setPageError(errorData?.message || 'Failed to load categories');
+    async function loadCategories() {
+      try {
+        const response = await apiFetch('/api/categories');
+        if (response.ok) {
+          const data = await response.json();
+          if (!ignore) {
+            setCategories(data);
+          }
+        } else {
+          const errorData = await response.json().catch(() => null);
+          if (!ignore) {
+            setPageError(errorData?.message || 'Failed to load categories');
+          }
+        }
+      } catch {
+        if (!ignore) {
+          setPageError('Network error. Unable to load categories.');
+        }
+      } finally {
+        if (!ignore) {
+          setLoading(false);
+        }
       }
-    } catch {
-      setPageError('Network error. Unable to load categories.');
-    } finally {
-      setLoading(false);
     }
-  }
+
+    loadCategories();
+
+    return () => {
+      ignore = true;
+    };
+  }, []);
 
   async function handleAddCategory({ name, type }) {
     setSubmitting(true);
