@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fintrack.dto.LoginRequest;
 import com.fintrack.dto.RegisterRequest;
+import com.fintrack.repository.BudgetRepository;
 import com.fintrack.repository.CategoryRepository;
 import com.fintrack.repository.TransactionRepository;
 import com.fintrack.repository.UserRepository;
@@ -20,23 +21,27 @@ public class TestHelper {
 
     private final MockMvc mockMvc;
     private final ObjectMapper objectMapper;
+    private final BudgetRepository budgetRepository;
     private final TransactionRepository transactionRepository;
     private final CategoryRepository categoryRepository;
     private final UserRepository userRepository;
 
     public TestHelper(MockMvc mockMvc,
                       ObjectMapper objectMapper,
+                      BudgetRepository budgetRepository,
                       TransactionRepository transactionRepository,
                       CategoryRepository categoryRepository,
                       UserRepository userRepository) {
         this.mockMvc = mockMvc;
         this.objectMapper = objectMapper;
+        this.budgetRepository = budgetRepository;
         this.transactionRepository = transactionRepository;
         this.categoryRepository = categoryRepository;
         this.userRepository = userRepository;
     }
 
     public void cleanDatabase() {
+        budgetRepository.deleteAll();
         transactionRepository.deleteAll();
         categoryRepository.deleteAll();
         userRepository.deleteAll();
