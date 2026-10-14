@@ -1,26 +1,52 @@
 # FinTrack Frontend
 
-React frontend for FinTrack built with Vite and Tailwind CSS.
+Frontend client for the FinTrack personal finance tracking application. Built with React, Vite, Tailwind CSS, and react-router-dom.
 
-## Development Setup
+## Prerequisites
 
-1. Install dependencies:
+- Node.js (version 18 or higher)
+- npm
+
+## Installation
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+
+2. Install dependencies:
    ```bash
    npm install
    ```
 
-2. Configure environment variables:
-   Copy `.env.example` to `.env` and verify the backend API URL:
+## Configuration
+
+The application requires the backend API base URL.
+
+1. Copy the example environment file to `.env`:
+   ```bash
+   cp .env.example .env
+   ```
+
+2. Open `.env` and set `VITE_API_URL` to point to your running Spring Boot backend:
    ```env
    VITE_API_URL=http://localhost:8080
    ```
 
-3. Start development server:
-   ```bash
-   npm run dev
-   ```
+## Running the Application
 
-4. Build for production:
-   ```bash
-   npm run build
-   ```
+- Start the development server:
+  ```bash
+  npm run dev
+  ```
+  The app will be available at `http://localhost:5173`.
+
+- Build for production:
+  ```bash
+  npm run build
+  ```
+
+- Preview the production build:
+  ```bash
+  npm run preview
+  ```
