@@ -6,3 +6,5 @@ node_modules/
 .env
 application-local.properties
 AGENTS.md
+.postman/
+postman/
