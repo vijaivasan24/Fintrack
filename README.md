@@ -467,6 +467,77 @@ OK
   ]
   ```
 
+### Reports
+
+#### Get Financial Summary
+- **Endpoint**: `GET /api/reports/summary`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Query Parameters**:
+  - `from` (required): Start date (`YYYY-MM-DD`)
+  - `to` (required): End date (`YYYY-MM-DD`)
+- **Response**: `200 OK`
+  ```json
+  {
+    "totalIncome": 3500.00,
+    "totalExpense": 400.00,
+    "netBalance": 3100.00,
+    "transactionCount": 4
+  }
+  ```
+
+#### Get Spending or Income by Category
+- **Endpoint**: `GET /api/reports/by-category`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Query Parameters**:
+  - `from` (required): Start date (`YYYY-MM-DD`)
+  - `to` (required): End date (`YYYY-MM-DD`)
+  - `type` (required): `INCOME` or `EXPENSE`
+- **Response**: `200 OK`
+  ```json
+  [
+    {
+      "categoryId": 1,
+      "categoryName": "Groceries",
+      "totalAmount": 200.00
+    },
+    {
+      "categoryId": 2,
+      "categoryName": "Dining",
+      "totalAmount": 65.00
+    }
+  ]
+  ```
+
+#### Get Monthly Income and Expense Breakdown
+- **Endpoint**: `GET /api/reports/monthly`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Query Parameters**:
+  - `year` (required): Year (e.g., `2026`)
+- **Response**: `200 OK`
+  ```json
+  [
+    {
+      "month": 1,
+      "totalIncome": 2500.00,
+      "totalExpense": 300.00,
+      "netBalance": 2200.00
+    },
+    {
+      "month": 2,
+      "totalIncome": 0,
+      "totalExpense": 0,
+      "netBalance": 0
+    }
+  ]
+  ```
+
+
 
 
 
