@@ -21,6 +21,7 @@ A personal finance tracker application.
 
 ## Prerequisites
 - Java 17 or higher
+- Node.js (v18 or higher) and npm
 - MySQL running on port 3306
 - A database named `fintrack`:
   ```sql
@@ -49,6 +50,22 @@ mvnw.cmd spring-boot:run
 ```
 
 The backend server runs on port 8080.
+
+## Running the Frontend
+From the `frontend` directory:
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+The frontend application runs on `http://localhost:5173`.
+To customize the backend API URL, set `VITE_API_URL` in `frontend/.env` (see `frontend/.env.example`).
 
 ## Health Check
 Verify the server status:
