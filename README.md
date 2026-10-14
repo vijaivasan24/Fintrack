@@ -344,5 +344,129 @@ OK
   - `Authorization: Bearer <token>`
 - **Response**: `204 No Content`
 
+### Budgets
+
+#### Create a Budget
+- **Endpoint**: `POST /api/budgets`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Request Body**:
+  ```json
+  {
+    "categoryId": 1,
+    "limitAmount": 500.00,
+    "year": 2026,
+    "month": 3
+  }
+  ```
+- **Response**: `201 Created`
+  ```json
+  {
+    "id": 1,
+    "categoryId": 1,
+    "categoryName": "Groceries",
+    "limitAmount": 500.00,
+    "year": 2026,
+    "month": 3
+  }
+  ```
+
+#### Get All Budgets for Current User
+- **Endpoint**: `GET /api/budgets`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Query Parameters**:
+  - `year` (optional): Filter by year (e.g., `2026`)
+  - `month` (optional): Filter by month (`1`-`12`)
+- **Response**: `200 OK`
+  ```json
+  [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "categoryName": "Groceries",
+      "limitAmount": 500.00,
+      "year": 2026,
+      "month": 3
+    }
+  ]
+  ```
+
+#### Get Budget by ID
+- **Endpoint**: `GET /api/budgets/{id}`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response**: `200 OK`
+  ```json
+  {
+    "id": 1,
+    "categoryId": 1,
+    "categoryName": "Groceries",
+    "limitAmount": 500.00,
+    "year": 2026,
+    "month": 3
+  }
+  ```
+
+#### Update Budget
+- **Endpoint**: `PUT /api/budgets/{id}`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Request Body**:
+  ```json
+  {
+    "categoryId": 1,
+    "limitAmount": 600.00,
+    "year": 2026,
+    "month": 3
+  }
+  ```
+- **Response**: `200 OK`
+  ```json
+  {
+    "id": 1,
+    "categoryId": 1,
+    "categoryName": "Groceries",
+    "limitAmount": 600.00,
+    "year": 2026,
+    "month": 3
+  }
+  ```
+
+#### Delete Budget
+- **Endpoint**: `DELETE /api/budgets/{id}`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response**: `204 No Content`
+
+#### Get Monthly Budget Status
+- **Endpoint**: `GET /api/budgets/status`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Query Parameters**:
+  - `year` (required): Year (e.g., `2026`)
+  - `month` (required): Month (`1`-`12`)
+- **Response**: `200 OK`
+  ```json
+  [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "categoryName": "Groceries",
+      "limitAmount": 500.00,
+      "amountSpent": 150.00,
+      "remainingAmount": 350.00,
+      "exceeded": false
+    }
+  ]
+  ```
+
+
 
 
