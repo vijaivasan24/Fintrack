@@ -118,3 +118,85 @@ OK
   }
   ```
 
+### Categories
+
+#### Create a Category
+- **Endpoint**: `POST /api/categories`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Request Body**:
+  ```json
+  {
+    "name": "Groceries",
+    "type": "EXPENSE"
+  }
+  ```
+- **Response**: `201 Created`
+  ```json
+  {
+    "id": 1,
+    "name": "Groceries",
+    "type": "EXPENSE"
+  }
+  ```
+
+#### Get All Categories for Current User
+- **Endpoint**: `GET /api/categories`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response**: `200 OK`
+  ```json
+  [
+    {
+      "id": 1,
+      "name": "Groceries",
+      "type": "EXPENSE"
+    }
+  ]
+  ```
+
+#### Get Category by ID
+- **Endpoint**: `GET /api/categories/{id}`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response**: `200 OK`
+  ```json
+  {
+    "id": 1,
+    "name": "Groceries",
+    "type": "EXPENSE"
+  }
+  ```
+
+#### Update Category
+- **Endpoint**: `PUT /api/categories/{id}`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Request Body**:
+  ```json
+  {
+    "name": "Food & Groceries",
+    "type": "EXPENSE"
+  }
+  ```
+- **Response**: `200 OK`
+  ```json
+  {
+    "id": 1,
+    "name": "Food & Groceries",
+    "type": "EXPENSE"
+  }
+  ```
+
+#### Delete Category
+- **Endpoint**: `DELETE /api/categories/{id}`
+- **Access**: Authenticated (Requires Bearer token)
+- **Headers**:
+  - `Authorization: Bearer <token>`
+- **Response**: `204 No Content`
+
+
