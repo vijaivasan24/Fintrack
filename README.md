@@ -1,0 +1,61 @@
+# FinTrack
+
+A personal finance tracker application.
+
+## Tech Stack
+
+### Backend
+- Java 17
+- Spring Boot 3
+- Spring MVC
+- Spring Data JPA (Hibernate)
+- Spring Security
+- Bean Validation
+- MySQL
+- Maven wrapper
+
+### Frontend
+- React.js (Vite)
+- JavaScript
+- Tailwind CSS
+
+## Prerequisites
+- Java 17 or higher
+- MySQL running on port 3306
+- A database named `fintrack`:
+  ```sql
+  CREATE DATABASE fintrack;
+  ```
+
+## Backend Configuration
+1. Open `backend/src/main/resources/application-local.properties`.
+2. Set your MySQL credentials:
+   ```properties
+   spring.datasource.username=root
+   spring.datasource.password=<your-mysql-password>
+   ```
+
+## Running the Backend
+From the `backend` directory:
+
+Linux / macOS:
+```bash
+./mvnw spring-boot:run
+```
+
+Windows:
+```cmd
+mvnw.cmd spring-boot:run
+```
+
+The backend server runs on port 8080.
+
+## Health Check
+Verify the server status:
+```bash
+curl http://localhost:8080/api/health
+```
+Expected response:
+```text
+OK
+```
