@@ -51,6 +51,14 @@ mvnw.cmd spring-boot:run
 
 The backend server runs on port 8080.
 
+## Frontend Pages
+
+- **Login & Register**: Authentication forms with client-side validation and automated sign-in on registration.
+- **Dashboard**: Financial overview for the current month including summary metric cards (income, expenses, net balance, transaction count), category spending horizontal bars, 12-month income vs expense bar chart with year selector, budget status indicators, and recent transactions.
+- **Transactions**: Full transaction log with Indian rupee formatting (`₹`), pagination, date/type/category filters, add/edit modal matching category types, and delete confirmation.
+- **Categories**: Income and expense category management with add form, inline name editing, and delete confirmation modal.
+- **Budgets**: Monthly budget management with year/month selector, expense category limits, progress bars (turns red when exceeded), add/edit modal, and delete confirmation.
+
 ## Running the Frontend
 From the `frontend` directory:
 
@@ -64,20 +72,18 @@ From the `frontend` directory:
    npm run dev
    ```
 
-The frontend application runs on `http://localhost:5173`.
-To customize the backend API URL, set `VITE_API_URL` in `frontend/.env` (see `frontend/.env.example`).
+   The frontend application runs on `http://localhost:5173`.
+   To customize the backend API URL, set `VITE_API_URL` in `frontend/.env` (see `frontend/.env.example`).
 
-## Health Check
-Verify the server status:
-```bash
-curl http://localhost:8080/api/health
-```
-Expected response:
-```text
-OK
-```
+3. Build and preview for production:
+   ```bash
+   npm run build
+   npm run preview
+   ```
 
 ## Running Tests
+
+### Backend Tests
 1. Create the test database in MySQL:
    ```sql
    CREATE DATABASE fintrack_test;
@@ -93,6 +99,14 @@ OK
    ```cmd
    mvnw.cmd test
    ```
+
+### Frontend Tests
+From the `frontend` directory:
+
+```bash
+npm test
+npm run lint
+```
 
 ## API Endpoints
 
