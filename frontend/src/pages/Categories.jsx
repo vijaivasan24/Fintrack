@@ -148,8 +148,12 @@ export default function Categories() {
     }
   }
 
-  const incomeCategories = categories.filter((c) => c.type === 'INCOME');
-  const expenseCategories = categories.filter((c) => c.type === 'EXPENSE');
+  const incomeCategories = Array.isArray(categories)
+    ? categories.filter((c) => c.type === 'INCOME')
+    : [];
+  const expenseCategories = Array.isArray(categories)
+    ? categories.filter((c) => c.type === 'EXPENSE')
+    : [];
 
   return (
     <div className="space-y-6">
