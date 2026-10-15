@@ -9,3 +9,7 @@ application-local.properties
 AGENTS.md
 .postman/
 postman/
+*.jtl
+performance/results/
+performance/report/
+*.pid
