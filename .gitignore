@@ -3,6 +3,7 @@ node_modules/
 .idea/
 .vscode/
 *.log
+*.err
 .env
 application-local.properties
 AGENTS.md
