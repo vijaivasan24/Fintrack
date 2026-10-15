@@ -58,6 +58,7 @@ export default function CategoryItem({ category, onUpdate, onDeleteClick }) {
           <div className="flex items-center space-x-2">
             <input
               type="text"
+              aria-label="Category name"
               value={editName}
               onChange={(e) => setEditName(e.target.value)}
               onKeyDown={handleKeyDown}
