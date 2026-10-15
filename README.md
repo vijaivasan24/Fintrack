@@ -568,7 +568,6 @@ npm run lint
   ]
   ```
 
+## Performance Testing
 
-
-
-
+Load testing and performance benchmarking documentation is available in [performance/README.md](file:///c:/Users/vijai/Documents/projects/fintrack/performance/README.md). It details the JMeter test plan, test dataset seeding, benchmark procedures, and performance metrics across the REST endpoints.
