@@ -22,3 +22,30 @@ export function formatDate(dateString) {
     year: 'numeric',
   }).format(date);
 }
+
+export const SHORT_MONTHS = [
+  'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+  'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
+];
+
+export function getCurrentMonthRange() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = now.getMonth();
+  const start = new Date(year, month, 1);
+  const end = new Date(year, month + 1, 0);
+
+  const format = (d) => {
+    const y = d.getFullYear();
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${y}-${m}-${day}`;
+  };
+
+  return {
+    from: format(start),
+    to: format(end),
+    year,
+    month: month + 1,
+  };
+}
